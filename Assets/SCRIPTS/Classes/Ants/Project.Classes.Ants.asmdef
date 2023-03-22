@@ -1,0 +1,16 @@
+{
+    "name": "Project.Classes.Ants",
+    "rootNamespace": "",
+    "references": [
+        "GUID:736e21403cd250d469b34eeba8908e2d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

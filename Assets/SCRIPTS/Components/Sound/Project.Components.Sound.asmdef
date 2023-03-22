@@ -1,0 +1,17 @@
+{
+    "name": "Project.Components.Sound",
+    "rootNamespace": "",
+    "references": [
+        "GUID:b7000077fcefdeb4e8b40569889e359c",
+        "GUID:aecec5c7f14009a4ca74e6602e6570a2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
