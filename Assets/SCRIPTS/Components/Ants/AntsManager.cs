@@ -28,7 +28,7 @@ namespace ANT.Components.Ants
                 _currentAnts.Add(ant);
 
                 if (_currentAnts.Count > 1) 
-                    ant.SetAttachedAnt(InitialAnts[_currentAnts.Count - 2]);
+                    ant.SetAttachedAnt(InitialAnts[0]);
             });
         }
 
@@ -52,13 +52,13 @@ namespace ANT.Components.Ants
         #region Auxiliar Methods
 
         private void SelectAnt() {
-            if (_input.LeftFlag) {
+            if (_input.RightFlag) {
                 _currentAnts[_auxIndex].Dehighlight();
                 _auxIndex = _auxIndex == 0 ? _currentAnts.Count - 1 : (_auxIndex -  1) % _currentAnts.Count;
                 _currentAnts[_auxIndex].Highlight(Color.white);
             }
                 
-            if (_input.RightFlag) {
+            if (_input.LeftFlag) {
                 _currentAnts[_auxIndex].Dehighlight();
                 _auxIndex = _auxIndex == _currentAnts.Count - 1 ? 0 : (_auxIndex +  1) % _currentAnts.Count;
                 _currentAnts[_auxIndex].Highlight(Color.white);
@@ -66,13 +66,15 @@ namespace ANT.Components.Ants
 
             if (_input.AntSelectFlag) {
                 // Ant position change in the list
+                (_currentAnts[_auxIndex].transform.position, _currentAnts[0].transform.position)
+                    = (_currentAnts[0].transform.position, _currentAnts[_auxIndex].transform.position);
                 (_currentAnts[_auxIndex], _currentAnts[0]) = 
                     (_currentAnts[0], _currentAnts[_auxIndex]);
-                    
+
                 // Attachs the ants
                 _currentAnts[0].Dehighlight();
                 _currentAnts[0].SetAttachedAnt(null);
-                _currentAnts[_auxIndex].SetAttachedAnt(_currentAnts[_auxIndex - 1]);
+                _currentAnts.ForEach(x => x.SetAttachedAnt(_currentAnts[0]));
                 
                 // Resume the game
                 _gameManager.SetState(GameStates.Playing);
