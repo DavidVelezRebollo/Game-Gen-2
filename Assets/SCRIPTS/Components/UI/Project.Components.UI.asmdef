@@ -1,3 +1,17 @@
 {
-	"name": "Project.Components.UI"
+    "name": "Project.Components.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9fcfeabe7d2901e4db56ec04f2f6dc47",
+        "GUID:089d8793af4dc7e4fb7bed4f5bd3b7d2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

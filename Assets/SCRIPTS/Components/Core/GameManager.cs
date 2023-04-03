@@ -10,14 +10,18 @@ namespace ANT.Components.Core {
     public class GameManager : MonoBehaviour {
         #region Singleton
 
-        public GameManager Instance;
+        public static GameManager Instance;
 
         private void Awake() {
             if (Instance != null) return;
             Instance = this;
+
+            _state = DebugMode ? GameStates.Playing : GameStates.Menu;
         }
 
         #endregion
+
+        [SerializeField] private bool DebugMode;
 
         private GameStates _state;
 

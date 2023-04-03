@@ -2,6 +2,7 @@ using ANT.Shared;
 using ANT.Input;
 using ANT.Interfaces.Ant;
 using ANT.Classes.Ants;
+using ANT.Components.Core;
 
 using UnityEngine;
 
@@ -14,10 +15,12 @@ namespace ANT.Components.Ants
         private Rigidbody2D _rb;
         private SpriteRenderer _renderer;
         private InputManager _input;
+        private GameManager _gameManager;
 
         private IAnt _ant;
         private AntComponent _attachedAnt;
         private bool _attached;
+        private Color _testColor;
 
         private bool _selected;
 
@@ -25,13 +28,18 @@ namespace ANT.Components.Ants
 
         private void Start() {
             _input = InputManager.Instance;
+            _gameManager = GameManager.Instance;
 
             _ant = InitializeAntType();
             _rb = GetComponent<Rigidbody2D>();
             _renderer = GetComponentInChildren<SpriteRenderer>();
+
+            _testColor = _renderer.color;
         }
 
         private void FixedUpdate() {
+            if (_gameManager.GamePaused()) return;
+            
             if (_attached) { 
                 FollowAttached();
                 return; 
@@ -44,26 +52,33 @@ namespace ANT.Components.Ants
 
         #region Getters & Setters
 
-        public IAnt GetAnt() { return _ant; }
+        public void SetAttachedAnt(AntComponent attached) {
+            _attachedAnt = attached;
+            _attached = attached;
+        }
 
-        public bool IsAttached() { return _attached; }
+        #endregion
 
-        public void Attach() { _attached = true; }
+        #region Methods
 
-        public void Deattach() { _attached = false; }
+        public void Highlight(Color color) {
+            _renderer.color = color;
+        }
 
-        public void SetAttachedAnt(AntComponent attached) { _attachedAnt = attached; }
+        public void Dehighlight() {
+            _renderer.color = _testColor;
+        }
 
         #endregion
 
         #region Auxiliar Methods
 
         private void Move() {
-            _rb.MovePosition(_rb.position + (Stats.Speed * Time.fixedDeltaTime * _input.Movement));
+            _rb.MovePosition(_rb.position + Stats.Speed * Time.fixedDeltaTime * _input.Movement);
         }
 
         private void FollowAttached() {
-            _rb.MovePosition(_rb.position + (_attachedAnt.Stats.Speed * Time.fixedDeltaTime * _input.Movement));
+            _rb.MovePosition(_rb.position + _attachedAnt.Stats.Speed * Time.fixedDeltaTime * _input.Movement);
         }
 
         private IAnt InitializeAntType() {

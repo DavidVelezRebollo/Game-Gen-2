@@ -165,6 +165,34 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UIInputs"",
+            ""id"": ""73c361fa-75e6-4e7b-a517-6996b82159f9"",
+            ""actions"": [
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""689e19bb-dbc6-4b91-ac36-ae94945d3cd5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c5b589bd-b8f5-4a62-a0c4-b6a49751d6f8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -175,6 +203,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_InputPlayer_Change = m_InputPlayer.FindAction("Change", throwIfNotFound: true);
         m_InputPlayer_LeftSelect = m_InputPlayer.FindAction("LeftSelect", throwIfNotFound: true);
         m_InputPlayer_RightSelect = m_InputPlayer.FindAction("RightSelect", throwIfNotFound: true);
+        // UIInputs
+        m_UIInputs = asset.FindActionMap("UIInputs", throwIfNotFound: true);
+        m_UIInputs_Pause = m_UIInputs.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -287,11 +318,48 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         }
     }
     public InputPlayerActions @InputPlayer => new InputPlayerActions(this);
+
+    // UIInputs
+    private readonly InputActionMap m_UIInputs;
+    private IUIInputsActions m_UIInputsActionsCallbackInterface;
+    private readonly InputAction m_UIInputs_Pause;
+    public struct UIInputsActions
+    {
+        private @InputActions m_Wrapper;
+        public UIInputsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Pause => m_Wrapper.m_UIInputs_Pause;
+        public InputActionMap Get() { return m_Wrapper.m_UIInputs; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIInputsActions set) { return set.Get(); }
+        public void SetCallbacks(IUIInputsActions instance)
+        {
+            if (m_Wrapper.m_UIInputsActionsCallbackInterface != null)
+            {
+                @Pause.started -= m_Wrapper.m_UIInputsActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_UIInputsActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_UIInputsActionsCallbackInterface.OnPause;
+            }
+            m_Wrapper.m_UIInputsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+            }
+        }
+    }
+    public UIInputsActions @UIInputs => new UIInputsActions(this);
     public interface IInputPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnChange(InputAction.CallbackContext context);
         void OnLeftSelect(InputAction.CallbackContext context);
         void OnRightSelect(InputAction.CallbackContext context);
+    }
+    public interface IUIInputsActions
+    {
+        void OnPause(InputAction.CallbackContext context);
     }
 }
