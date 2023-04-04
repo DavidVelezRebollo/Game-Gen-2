@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 441885565}
   - component: {fileID: 441885567}
   - component: {fileID: 441885566}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: QueenAnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 1033565968}
   - component: {fileID: 1033565967}
   - component: {fileID: 1033565966}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BigAnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1081,7 +1081,7 @@ GameObject:
   - component: {fileID: 1850281794}
   - component: {fileID: 1850281796}
   - component: {fileID: 1850281795}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SmallAnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -19,9 +19,13 @@ namespace ANT.Components.Ants
 
         private IAnt _ant;
         private AntComponent _attachedAnt;
-        private bool _attached;
+        private Transform _transform;
         private Color _testColor;
+        
+        private const float _FOLLOW_THRESHOLD = 1f;
+        private float _attachedMovementSpeed;
 
+        private bool _attached;
         private bool _selected;
 
         #region Unity Events
@@ -33,6 +37,7 @@ namespace ANT.Components.Ants
             _ant = InitializeAntType();
             _rb = GetComponent<Rigidbody2D>();
             _renderer = GetComponentInChildren<SpriteRenderer>();
+            _transform = transform;
 
             _testColor = _renderer.color;
         }
@@ -40,9 +45,9 @@ namespace ANT.Components.Ants
         private void FixedUpdate() {
             if (_gameManager.GamePaused()) return;
             
-            if (_attached) { 
+            if (_attached) {
                 FollowAttached();
-                return; 
+                return;
             }
 
             Move();
@@ -52,10 +57,14 @@ namespace ANT.Components.Ants
 
         #region Getters & Setters
 
+        public float GetSpeed() { return Stats.Speed; }
+
         public void SetAttachedAnt(AntComponent attached) {
             _attachedAnt = attached;
             _attached = attached;
         }
+        
+        public void SetAttachedSpeed(float speed){ _attachedMovementSpeed = speed; }
 
         #endregion
 
@@ -78,7 +87,13 @@ namespace ANT.Components.Ants
         }
 
         private void FollowAttached() {
-            _rb.MovePosition(_rb.position + _attachedAnt.Stats.Speed * Time.fixedDeltaTime * _input.Movement);
+            if (Vector2.Distance(_transform.position, _attachedAnt._transform.position) <= _FOLLOW_THRESHOLD) return;
+            
+            Vector2 targetPosition = _attachedAnt._transform.position;
+            Vector2 currentPosition = _transform.position;
+            float maxDistanceDelta = _attachedMovementSpeed * Time.fixedDeltaTime;
+                
+            _transform.position = Vector2.MoveTowards(currentPosition, targetPosition, maxDistanceDelta);
         }
 
         private IAnt InitializeAntType() {

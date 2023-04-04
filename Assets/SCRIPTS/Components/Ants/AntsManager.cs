@@ -1,9 +1,9 @@
-using ANT.Interfaces.Ant;
 using ANT.Input;
+using ANT.Interfaces.Ant;
+using ANT.Components.Core;
 
 using UnityEngine;
 using System.Collections.Generic;
-using ANT.Components.Core;
 
 namespace ANT.Components.Ants
 {
@@ -27,8 +27,10 @@ namespace ANT.Components.Ants
             InitialAnts.ForEach(ant => {
                 _currentAnts.Add(ant);
 
-                if (_currentAnts.Count > 1) 
-                    ant.SetAttachedAnt(InitialAnts[0]);
+                if (_currentAnts.Count > 1) {
+                    ant.SetAttachedAnt(InitialAnts[_currentAnts.Count - 2]);
+                    ant.SetAttachedSpeed(_currentAnts[0].GetSpeed());
+                }
             });
         }
 
@@ -68,14 +70,17 @@ namespace ANT.Components.Ants
                 // Ant position change in the list
                 (_currentAnts[_auxIndex].transform.position, _currentAnts[0].transform.position)
                     = (_currentAnts[0].transform.position, _currentAnts[_auxIndex].transform.position);
-                (_currentAnts[_auxIndex], _currentAnts[0]) = 
-                    (_currentAnts[0], _currentAnts[_auxIndex]);
+                (_currentAnts[_auxIndex], _currentAnts[0]) = (_currentAnts[0], _currentAnts[_auxIndex]);
 
                 // Attachs the ants
                 _currentAnts[0].Dehighlight();
                 _currentAnts[0].SetAttachedAnt(null);
-                _currentAnts.ForEach(x => x.SetAttachedAnt(_currentAnts[0]));
-                
+
+                for (int i = 1; i < _currentAnts.Count; i++) {
+                    _currentAnts[i].SetAttachedAnt(_currentAnts[i - 1]);
+                    _currentAnts[i].SetAttachedSpeed(_currentAnts[0].GetSpeed());
+                }
+
                 // Resume the game
                 _gameManager.SetState(GameStates.Playing);
                 _onSelectMode = false;
