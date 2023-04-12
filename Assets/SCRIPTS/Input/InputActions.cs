@@ -62,6 +62,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""8972fe4d-22d5-4bbc-aede-91289191c257"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -163,6 +172,17 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""action"": ""RightSelect"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d31c153-ddcc-4ff6-a4e7-bc6fc41e783c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -203,6 +223,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_InputPlayer_Change = m_InputPlayer.FindAction("Change", throwIfNotFound: true);
         m_InputPlayer_LeftSelect = m_InputPlayer.FindAction("LeftSelect", throwIfNotFound: true);
         m_InputPlayer_RightSelect = m_InputPlayer.FindAction("RightSelect", throwIfNotFound: true);
+        m_InputPlayer_Interact = m_InputPlayer.FindAction("Interact", throwIfNotFound: true);
         // UIInputs
         m_UIInputs = asset.FindActionMap("UIInputs", throwIfNotFound: true);
         m_UIInputs_Pause = m_UIInputs.FindAction("Pause", throwIfNotFound: true);
@@ -269,6 +290,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_InputPlayer_Change;
     private readonly InputAction m_InputPlayer_LeftSelect;
     private readonly InputAction m_InputPlayer_RightSelect;
+    private readonly InputAction m_InputPlayer_Interact;
     public struct InputPlayerActions
     {
         private @InputActions m_Wrapper;
@@ -277,6 +299,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Change => m_Wrapper.m_InputPlayer_Change;
         public InputAction @LeftSelect => m_Wrapper.m_InputPlayer_LeftSelect;
         public InputAction @RightSelect => m_Wrapper.m_InputPlayer_RightSelect;
+        public InputAction @Interact => m_Wrapper.m_InputPlayer_Interact;
         public InputActionMap Get() { return m_Wrapper.m_InputPlayer; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -298,6 +321,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @RightSelect.started -= m_Wrapper.m_InputPlayerActionsCallbackInterface.OnRightSelect;
                 @RightSelect.performed -= m_Wrapper.m_InputPlayerActionsCallbackInterface.OnRightSelect;
                 @RightSelect.canceled -= m_Wrapper.m_InputPlayerActionsCallbackInterface.OnRightSelect;
+                @Interact.started -= m_Wrapper.m_InputPlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InputPlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InputPlayerActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_InputPlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -314,6 +340,9 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @RightSelect.started += instance.OnRightSelect;
                 @RightSelect.performed += instance.OnRightSelect;
                 @RightSelect.canceled += instance.OnRightSelect;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -357,6 +386,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnChange(InputAction.CallbackContext context);
         void OnLeftSelect(InputAction.CallbackContext context);
         void OnRightSelect(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIInputsActions
     {

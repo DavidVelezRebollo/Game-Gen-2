@@ -11,6 +11,7 @@ namespace ANT.Input
         public bool PauseFlag { get; private set; }
         public bool RightFlag { get; private set; }
         public bool LeftFlag { get; private set; }
+        public bool InteractFlag { get; private set; }
 
         #region Unity Methods
 
@@ -23,10 +24,7 @@ namespace ANT.Input
         private void Update() {
             Movement = _input.InputPlayer.Movement.ReadValue<Vector2>();
 
-            AntSelectFlag = _input.InputPlayer.Change.WasPressedThisFrame();
-            PauseFlag = _input.UIInputs.Pause.WasPressedThisFrame();
-            RightFlag = _input.InputPlayer.RightSelect.WasPerformedThisFrame();
-            LeftFlag = _input.InputPlayer.LeftSelect.WasPerformedThisFrame();
+            ManageFlags();
         }
 
         private void OnEnable() {
@@ -35,6 +33,18 @@ namespace ANT.Input
 
         private void OnDisable() {
             _input.Disable();
+        }
+
+        #endregion
+
+        #region Auxiliar Methods
+
+        private void ManageFlags() {
+            AntSelectFlag = _input.InputPlayer.Change.WasPressedThisFrame();
+            PauseFlag = _input.UIInputs.Pause.WasPressedThisFrame();
+            RightFlag = _input.InputPlayer.RightSelect.WasPerformedThisFrame();
+            LeftFlag = _input.InputPlayer.LeftSelect.WasPerformedThisFrame();
+            InteractFlag = _input.InputPlayer.Interact.WasPerformedThisFrame();
         }
 
         #endregion

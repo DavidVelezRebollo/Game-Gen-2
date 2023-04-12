@@ -1,11 +1,8 @@
 {
-    "name": "Project.Components.Interactables",
+    "name": "Project.Classes.Interactable",
     "rootNamespace": "",
     "references": [
-        "Project.Input",
-        "Project.Shared",
-        "Project.Interfaces.Interactable",
-        "Project.Classes.Interactable"
+        "GUID:8934a3c41752d1241af215d45b3e4911"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
