@@ -21,11 +21,14 @@ namespace ANT.Components.Ants
         private AntComponent _attachedAnt;
         private Transform _transform;
         private Color _testColor;
-        
+        private LayerMask _ground;
+        private RaycastHit2D _groundHit;
+
         private const float _FOLLOW_THRESHOLD = 1f;
         private float _attachedMovementSpeed;
 
         private bool _attached;
+        private bool _onAir;
         private bool _selected;
 
         #region Unity Events
@@ -38,13 +41,17 @@ namespace ANT.Components.Ants
             _rb = GetComponent<Rigidbody2D>();
             _renderer = GetComponentInChildren<SpriteRenderer>();
             _transform = transform;
+            _ground = LayerMask.GetMask("Game/Ground");
 
             _testColor = _renderer.color;
         }
 
         private void FixedUpdate() {
             if (_gameManager.GamePaused()) return;
-            
+
+            _groundHit = Physics2D.Raycast(transform.position, Vector2.down, 1f,_ground);
+            _onAir = !_groundHit.collider;
+
             if (_attached) {
                 FollowAttached();
                 return;
@@ -83,7 +90,7 @@ namespace ANT.Components.Ants
         #region Auxiliar Methods
 
         private void Move() {
-            _rb.MovePosition(_rb.position + Stats.Speed * Time.fixedDeltaTime * _input.Movement);
+            _rb.velocity = new Vector2(_input.Movement.x * Stats.Speed, _rb.velocity.y);
         }
 
         private void FollowAttached() {
