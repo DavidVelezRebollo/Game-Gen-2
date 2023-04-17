@@ -68,6 +68,8 @@ namespace ANT.Components.Ants
 
         public int CurrentAntsCount() { return _currentAnts.Count; }
 
+        public AntComponent GetAnt(int index) { return _currentAnts[index]; }
+
         #endregion
 
         #region Methods

@@ -41,7 +41,18 @@ namespace ANT.Components.Ants {
         #region Auxiliar Methods
 
         private void BuildTower() {
-            Debug.Log("TO DO - Build Tower");
+            Vector3 firstAntPosition = new Vector3(_antsManager.GetAnt(0).GetAntCurrentPosition().x,
+                _antsManager.GetAnt(0).GetAntCurrentPosition().y);
+            float offset = 1.05f;
+
+            for(int i = 1; i < _antsManager.CurrentAntsCount(); i++) {
+                AntComponent ant = _antsManager.GetAnt(i);
+                ant.SetAntPosition(firstAntPosition + new Vector3(0, offset));
+                ant.SetGravityValue(0);
+                ant.SetTowerFlag(true);
+
+                offset += 1.05f;
+            }
         }
 
         #endregion

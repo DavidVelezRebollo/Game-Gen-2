@@ -35,6 +35,7 @@ namespace ANT.Components.Ants
         private bool _onAir;
         private bool _selected;
         private bool _playable;
+        private bool _onTower;
 
         #region Unity Events
 
@@ -107,6 +108,10 @@ namespace ANT.Components.Ants
         
         public void SetPlayableState(bool playable) { _playable = playable; }
 
+        public void SetGravityValue(int scale) { _rb.gravityScale = scale; }
+
+        public void SetTowerFlag(bool flag) { _onTower = flag; }
+
         #endregion
 
         #region Methods
@@ -134,8 +139,11 @@ namespace ANT.Components.Ants
             Vector2 targetPosition = _attachedAnt._transform.position;
             Vector2 currentPosition = _transform.position;
             float maxDistanceDelta = _attachedMovementSpeed * Time.fixedDeltaTime;
-                
-            _transform.position = Vector2.MoveTowards(currentPosition, targetPosition, maxDistanceDelta);
+
+            if (!_onTower)
+                _transform.position = Vector2.MoveTowards(currentPosition, targetPosition, maxDistanceDelta);
+            else
+                _transform.position = new Vector2(_antsManager.GetAnt(0)._transform.position.x, currentPosition.y);
         }
 
         private IAnt InitializeAntType() {
