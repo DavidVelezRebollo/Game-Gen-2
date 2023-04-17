@@ -2,6 +2,7 @@
     "name": "Project.Components.UI",
     "rootNamespace": "",
     "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
         "GUID:9fcfeabe7d2901e4db56ec04f2f6dc47",
         "GUID:089d8793af4dc7e4fb7bed4f5bd3b7d2"
     ],

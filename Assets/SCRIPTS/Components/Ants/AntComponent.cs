@@ -1,3 +1,4 @@
+using System;
 using ANT.Shared;
 using ANT.Input;
 using ANT.Interfaces.Ant;
@@ -16,6 +17,7 @@ namespace ANT.Components.Ants
         private SpriteRenderer _renderer;
         private InputManager _input;
         private GameManager _gameManager;
+        private AntsManager _antsManager;
 
         private IAnt _ant;
         private AntComponent _attachedAnt;
@@ -23,31 +25,41 @@ namespace ANT.Components.Ants
         private Color _testColor;
         private LayerMask _ground;
         private RaycastHit2D _groundHit;
+        private BoxCollider2D _collider;
 
         private const float _FOLLOW_THRESHOLD = 1f;
         private float _attachedMovementSpeed;
+        private float _direction; // -1: Left, 1: Right
 
         private bool _attached;
         private bool _onAir;
         private bool _selected;
+        private bool _playable;
 
         #region Unity Events
 
         private void Start() {
             _input = InputManager.Instance;
             _gameManager = GameManager.Instance;
+            _antsManager = AntsManager.Instance;
 
             _ant = InitializeAntType();
             _rb = GetComponent<Rigidbody2D>();
+            _collider = GetComponent<BoxCollider2D>();
             _renderer = GetComponentInChildren<SpriteRenderer>();
             _transform = transform;
             _ground = LayerMask.GetMask("Game/Ground");
 
             _testColor = _renderer.color;
+
+            if (_playable) return;
+            
+            _collider.isTrigger = true;
+            _rb.gravityScale = 0;
         }
 
         private void FixedUpdate() {
-            if (_gameManager.GamePaused()) return;
+            if (_gameManager.GamePaused() || !_playable) return;
 
             _groundHit = Physics2D.Raycast(transform.position, Vector2.down, 1f,_ground);
             _onAir = !_groundHit.collider;
@@ -60,18 +72,40 @@ namespace ANT.Components.Ants
             Move();
         }
 
+        private void OnTriggerEnter2D(Collider2D col) {
+            if (!col.CompareTag("Game/Ant")) return;
+            AntComponent ant = col.GetComponent<AntComponent>();
+            if (ant._playable) return;
+
+            ant._collider.isTrigger = false;
+            ant._rb.gravityScale = 1;
+            
+            _antsManager.AddAnt(ant);
+        }
+
         #endregion
 
         #region Getters & Setters
+        
+        public Vector3 GetAntCurrentPosition() { return transform.position; }
 
         public float GetSpeed() { return Stats.Speed; }
+
+        public float GetAntDirection() { return _direction; }
+
+        public void SetAntPosition(Vector3 position) { transform.position = position; }
+        
+        public void SetAntLayer(LayerMask layer) { gameObject.layer = layer; }
 
         public void SetAttachedAnt(AntComponent attached) {
             _attachedAnt = attached;
             _attached = attached;
+            _playable = true;
         }
+
+        public void SetAttachedSpeed(float speed) { _attachedMovementSpeed = speed; }
         
-        public void SetAttachedSpeed(float speed){ _attachedMovementSpeed = speed; }
+        public void SetPlayableState(bool playable) { _playable = playable; }
 
         #endregion
 
@@ -91,6 +125,7 @@ namespace ANT.Components.Ants
 
         private void Move() {
             _rb.velocity = new Vector2(_input.Movement.x * Stats.Speed, _rb.velocity.y);
+            if(_input.Movement.x != 0) _direction = _input.Movement.x;
         }
 
         private void FollowAttached() {
@@ -112,6 +147,9 @@ namespace ANT.Components.Ants
                     break;
                 case AntTypes.BigAnt:
                     ant = new BigAnt();
+                    break;
+                case AntTypes.RedAnt:
+                    ant = new RedAnt();
                     break;
                 default:
                     Debug.LogError("Type " + Stats.Type + " not implemented yet");

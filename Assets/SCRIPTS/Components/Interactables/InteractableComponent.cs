@@ -19,8 +19,8 @@ namespace ANT.Components.Interactables {
             InitializeInteractable();
         }
 
-        private void OnTriggerStay2D(Collider2D other) {
-            if (!_input.InteractFlag) return;
+        private void OnCollisionStay2D(Collision2D collision) {
+            if (!_input.InteractFlag || !collision.collider.CompareTag("Game/Ant")) return;
             
             // TO DO - Show the Interactable UI
             _interactable.Interact();
