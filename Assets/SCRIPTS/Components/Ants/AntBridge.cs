@@ -4,17 +4,30 @@ using UnityEngine;
 
 namespace ANT.Components.Ants {
     [RequireComponent(typeof(BoxCollider2D), typeof(TowerBridgesUI))]
-    public class AntBridge : MonoBehaviour {
-        [SerializeField] private int RequiredAnts;
+    public class AntBridge : AntBuilding {
+        [SerializeField] private GameObject BrigeSpot;
 
-        private BoxCollider2D _collider;
+        protected override void Build() {
+            Vector3 bridgeSpotPosition = BrigeSpot.transform.position;
+            Vector3 bridgeSpotScale = BrigeSpot.transform.localScale;
+            Vector3 firstAntPosition = new Vector3(bridgeSpotPosition.x - bridgeSpotScale.x / 2, bridgeSpotPosition.y);
+            float offset = 0f;
 
-        private void Start() {
-            _collider = GetComponent<BoxCollider2D>();
+            for(int i = 1; i < AntsManager.CurrentAntsCount(); i++) {
+                AntComponent ant = AntsManager.GetAnt(i);
+                ant.BuildBridge(firstAntPosition, offset);
+
+                offset += 1.15f;
+            }
         }
 
-        private void Update() {
-            
+        private void OnDrawGizmosSelected() {
+            if (!BrigeSpot) {
+                Debug.LogWarning("Bridge Spot Missing");
+                return;
+            }
+
+            Gizmos.DrawWireCube(BrigeSpot.transform.position, BrigeSpot.transform.localScale);
         }
     }
 }

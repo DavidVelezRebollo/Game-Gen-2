@@ -36,6 +36,7 @@ namespace ANT.Components.Ants
         private bool _selected;
         private bool _playable;
         private bool _onTower;
+        private bool _onBridge;
 
         #region Unity Events
 
@@ -60,7 +61,7 @@ namespace ANT.Components.Ants
         }
 
         private void FixedUpdate() {
-            if (_gameManager.GamePaused() || !_playable) return;
+            if (_gameManager.GamePaused() || !_playable || _onBridge) return;
 
             _groundHit = Physics2D.Raycast(transform.position, Vector2.down, 1f,_ground);
             _onAir = !_groundHit.collider;
@@ -93,10 +94,10 @@ namespace ANT.Components.Ants
         public float GetSpeed() { return Stats.Speed; }
 
         public float GetAntDirection() { return _direction; }
-
-        public void SetAntPosition(Vector3 position) { transform.position = position; }
         
         public void SetAntLayer(LayerMask layer) { gameObject.layer = layer; }
+
+        public void SetAntPosition(Vector3 position) { _transform.position = position; }
 
         public void SetAttachedAnt(AntComponent attached) {
             _attachedAnt = attached;
@@ -108,10 +109,6 @@ namespace ANT.Components.Ants
         
         public void SetPlayableState(bool playable) { _playable = playable; }
 
-        public void SetGravityValue(int scale) { _rb.gravityScale = scale; }
-
-        public void SetTowerFlag(bool flag) { _onTower = flag; }
-
         #endregion
 
         #region Methods
@@ -122,6 +119,20 @@ namespace ANT.Components.Ants
 
         public void Dehighlight() {
             _renderer.color = _testColor;
+        }
+
+        public void BuildTower(Vector3 firstAntPosition, float offset) {
+            _transform.position = firstAntPosition + new Vector3(0, offset);
+            _rb.gravityScale = 0;
+            _onTower = true;
+        }
+
+        public void BuildBridge(Vector3 firstAntPosition, float offset) {
+            _transform.position = firstAntPosition + new Vector3(offset, 0);
+            _rb.gravityScale = 0;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _onBridge = true;
+            gameObject.layer = 7;
         }
 
         #endregion
