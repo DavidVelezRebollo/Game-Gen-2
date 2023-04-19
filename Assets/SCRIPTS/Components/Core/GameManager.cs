@@ -35,6 +35,11 @@ namespace ANT.Components.Core {
 
         public bool GamePaused() { return _state != GameStates.Playing; }
 
+        public void EndGame() {
+            // TODO - End the game
+            _state = GameStates.Paused;
+        }
+
         #endregion
     }
 }

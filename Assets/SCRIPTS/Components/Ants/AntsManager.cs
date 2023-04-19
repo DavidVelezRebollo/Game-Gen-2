@@ -42,8 +42,10 @@ namespace ANT.Components.Ants
                 if (_currentAnts.Count > 1) {
                     ant.SetAttachedAnt(InitialAnts[_currentAnts.Count - 2]);
                     ant.SetAttachedSpeed(_currentAnts[0].GetSpeed());
-                } 
-                else if (_currentAnts.Count == 1) ant.SetPlayableState(true);
+                } else if (_currentAnts.Count == 1) {
+                    ant.SetPlayableState(true);
+                    ant.gameObject.tag = "Game/PlayableAnt";
+                }
             });
         }
 
@@ -108,6 +110,7 @@ namespace ANT.Components.Ants
 
             if (_input.AntSelectFlag) {
                 // Ant position change in the list
+                _currentAnts[_auxIndex].gameObject.tag = "Game/Ant";
                 (_currentAnts[_auxIndex].transform.position, _currentAnts[0].transform.position)
                     = (_currentAnts[0].transform.position, _currentAnts[_auxIndex].transform.position);
                 (_currentAnts[_auxIndex], _currentAnts[0]) = (_currentAnts[0], _currentAnts[_auxIndex]);
@@ -115,6 +118,7 @@ namespace ANT.Components.Ants
                 // Attachs the ants
                 _currentAnts[0].Dehighlight();
                 _currentAnts[0].SetAttachedAnt(null);
+                _currentAnts[0].gameObject.tag = "PlayableAnt";
 
                 for (int i = 1; i < _currentAnts.Count; i++) {
                     _currentAnts[i].SetAttachedAnt(_currentAnts[i - 1]);

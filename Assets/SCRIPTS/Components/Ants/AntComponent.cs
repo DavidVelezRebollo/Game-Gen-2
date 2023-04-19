@@ -113,6 +113,10 @@ namespace ANT.Components.Ants
 
         #region Methods
 
+        public void Die() {
+            _gameManager.EndGame();
+        }
+
         public void Highlight(Color color) {
             _renderer.color = color;
         }
