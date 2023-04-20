@@ -2,11 +2,13 @@
     "name": "Project.Components.Interactables",
     "rootNamespace": "",
     "references": [
+        "Unity.TextMeshPro",
         "Project.Input",
         "Project.Shared",
         "Project.Interfaces.Interactable",
         "Project.Classes.Interactable",
-        "Project.Components.Ants"
+        "Project.Components.Ants",
+        "Project.Components.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

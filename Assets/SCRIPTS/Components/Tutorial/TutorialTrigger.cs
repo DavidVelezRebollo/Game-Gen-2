@@ -1,3 +1,5 @@
+using ANT.Components.HUD;
+
 using UnityEngine;
 
 namespace ANT.Components.Tutorial {
@@ -7,7 +9,7 @@ namespace ANT.Components.Tutorial {
         [Multiline]
         [SerializeField] private string ContentText;
         [SerializeField] private GameObject UiGameObject;
-        [SerializeField] private TutorialUI Ui;
+        [SerializeField] private InteractableUI Ui;
 
         private void Start() {
             UiGameObject.SetActive(false);

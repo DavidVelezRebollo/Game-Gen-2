@@ -2,9 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ANT.Components.Tutorial {
+namespace ANT.Components.HUD {
     [ExecuteInEditMode()]
-    public class TutorialUI : MonoBehaviour {
+    public class InteractableUI : MonoBehaviour {
         [SerializeField] private TextMeshProUGUI Header;
         [SerializeField] private TextMeshProUGUI Content;
         [SerializeField] private LayoutElement LayoutElement;
