@@ -1,10 +1,9 @@
-using System;
 using ANT.Input;
-using ANT.Interfaces.Ant;
 using ANT.Components.Core;
 
 using UnityEngine;
 using System.Collections.Generic;
+using Cinemachine;
 
 namespace ANT.Components.Ants
 {
@@ -21,6 +20,7 @@ namespace ANT.Components.Ants
         #endregion
         
         [SerializeField] private List<AntComponent> InitialAnts;
+        [SerializeField] private CinemachineVirtualCamera AntsCamera;
 
         private readonly List<AntComponent> _currentAnts = new();
         private InputManager _input;
@@ -55,7 +55,7 @@ namespace ANT.Components.Ants
                 return;
             }
             
-            _onSelectMode = _input.AntSelectFlag;
+            _onSelectMode = _input.AntSelectFlag();
 
             if (!_onSelectMode) return;
             
@@ -94,23 +94,25 @@ namespace ANT.Components.Ants
 
         private void SelectAnt() {
             int direction = (int) _currentAnts[0].GetAntDirection();
-            if (_input.RightFlag) {
+            if (_input.RightFlag()) {
                 _currentAnts[_auxIndex].Dehighlight();
                 if (direction >= 0) _auxIndex = _auxIndex == 0 ? _currentAnts.Count - 1 : (_auxIndex - 1) % _currentAnts.Count;
                 else _auxIndex = _auxIndex == _currentAnts.Count - 1 ? 0 : (_auxIndex + 1) % _currentAnts.Count;
                 _currentAnts[_auxIndex].Highlight(Color.white);
             }
                 
-            if (_input.LeftFlag) {
+            if (_input.LeftFlag()) {
                 _currentAnts[_auxIndex].Dehighlight();
                if (direction >= 0) _auxIndex = _auxIndex == _currentAnts.Count - 1 ? 0 : (_auxIndex + 1) % _currentAnts.Count;
                else _auxIndex = _auxIndex == 0 ? _currentAnts.Count - 1 : (_auxIndex - 1) % _currentAnts.Count;
                 _currentAnts[_auxIndex].Highlight(Color.white);
             }
 
-            if (_input.AntSelectFlag) {
+            if (_input.AntSelectFlag()) {
                 // Ant position change in the list
                 _currentAnts[_auxIndex].gameObject.tag = "Game/Ant";
+                AntsCamera.m_Follow = _currentAnts[_auxIndex].transform;
+                
                 (_currentAnts[_auxIndex].transform.position, _currentAnts[0].transform.position)
                     = (_currentAnts[0].transform.position, _currentAnts[_auxIndex].transform.position);
                 (_currentAnts[_auxIndex], _currentAnts[0]) = (_currentAnts[0], _currentAnts[_auxIndex]);

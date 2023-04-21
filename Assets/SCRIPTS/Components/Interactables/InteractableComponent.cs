@@ -5,7 +5,6 @@ using ANT.Components.HUD;
 using ANT.Input;
 
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace ANT.Components.Interactables {
     [RequireComponent(typeof(SpriteRenderer))]

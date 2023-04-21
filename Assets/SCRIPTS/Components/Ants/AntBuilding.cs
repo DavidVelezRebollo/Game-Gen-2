@@ -23,7 +23,7 @@ namespace ANT.Components.Ants {
         }
 
         private void Update() {
-            if (!Input.InteractFlag || AntsManager.CurrentAntsCount() < RequiredAnts || !_isColliding) return;
+            if (!Input.InteractFlag() || AntsManager.CurrentAntsCount() < RequiredAnts || !_isColliding) return;
 
             Build();
         }

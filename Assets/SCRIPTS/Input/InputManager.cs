@@ -8,14 +8,9 @@ namespace ANT.Input
         public static InputManager Instance;
         private InputActions _input;
 
-        private Action<InputAction.CallbackContext> auxAction;
+        private Action<InputAction.CallbackContext> _auxAction;
 
         public Vector2 Movement { get; private set; }
-        public bool AntSelectFlag { get; private set; }
-        public bool PauseFlag { get; private set; }
-        public bool RightFlag { get; private set; }
-        public bool LeftFlag { get; private set; }
-        public bool InteractFlag { get; private set; }
 
         #region Unity Methods
 
@@ -27,8 +22,6 @@ namespace ANT.Input
 
         private void Update() {
             Movement = _input.InputPlayer.Movement.ReadValue<Vector2>();
-
-            ManageFlags();
         }
 
         private void OnEnable() {
@@ -41,6 +34,16 @@ namespace ANT.Input
 
         #endregion
 
+        #region Getters
+
+        public bool AntSelectFlag(){ return _input.InputPlayer.Change.WasPressedThisFrame(); }
+        public bool RightFlag(){ return _input.InputPlayer.RightSelect.WasPressedThisFrame(); }
+        public bool LeftFlag(){ return _input.InputPlayer.LeftSelect.WasPressedThisFrame(); }
+        public bool InteractFlag(){ return _input.InputPlayer.Interact.WasPressedThisFrame(); }
+        public bool PauseFlag(){ return _input.UIInputs.Pause.WasPressedThisFrame(); }
+
+        #endregion
+
         #region Methods
 
         public void SubscribeInteractFlag(Action<InputAction.CallbackContext> action) {
@@ -49,18 +52,6 @@ namespace ANT.Input
 
         public void UnsubscribeInteractFlag(Action<InputAction.CallbackContext> action) {
             _input.InputPlayer.Interact.performed -= action;
-        }
-
-        #endregion
-
-        #region Auxiliar Methods
-
-        private void ManageFlags() {
-            AntSelectFlag = _input.InputPlayer.Change.WasPerformedThisFrame();
-            PauseFlag = _input.UIInputs.Pause.WasPerformedThisFrame();
-            RightFlag = _input.InputPlayer.RightSelect.WasPerformedThisFrame();
-            LeftFlag = _input.InputPlayer.LeftSelect.WasPerformedThisFrame();
-            InteractFlag = _input.InputPlayer.Interact.WasPerformedThisFrame();
         }
 
         #endregion

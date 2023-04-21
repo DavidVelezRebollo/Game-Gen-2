@@ -2,6 +2,7 @@
     "name": "Project.Components.Ants",
     "rootNamespace": "",
     "references": [
+        "GUID:4307f53044263cf4b835bd812fc161a4",
         "GUID:aecec5c7f14009a4ca74e6602e6570a2",
         "GUID:9fcfeabe7d2901e4db56ec04f2f6dc47",
         "GUID:736e21403cd250d469b34eeba8908e2d",
