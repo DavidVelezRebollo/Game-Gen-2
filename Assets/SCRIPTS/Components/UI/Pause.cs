@@ -30,6 +30,27 @@ namespace ANT.Components.HUD {
 
         #endregion
 
+        #region Methods
+
+        public void OnContinueButton() {
+            _gameManager.SetState(GameStates.Playing);
+            
+            foreach (GameObject item in ObjectsToHide)
+                item.SetActive(true);
+            
+            PausePanel.SetActive(!PausePanel.activeInHierarchy);
+        }
+
+        public void OnSettingsButton() {
+            
+        }
+
+        public void OnExitButton() {
+            
+        }
+
+        #endregion
+
         #region Auxiliar Methods
 
         private void HandlePause() {
