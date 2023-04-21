@@ -22,21 +22,19 @@ namespace ANT.Components.Ants
         private IAnt _ant;
         private AntComponent _attachedAnt;
         private Transform _transform;
-        private Color _testColor;
         private LayerMask _ground;
         private RaycastHit2D _groundHit;
         private BoxCollider2D _collider;
 
-        private const float _FOLLOW_THRESHOLD = 1f;
+        private const float _FOLLOW_THRESHOLD = 3.5f;
         private float _attachedMovementSpeed;
         private float _direction; // -1: Left, 1: Right
 
         private bool _attached;
-        private bool _onAir;
-        private bool _selected;
         private bool _playable;
         private bool _onTower;
         private bool _onBridge;
+        private bool _following;
 
         #region Unity Events
 
@@ -52,19 +50,18 @@ namespace ANT.Components.Ants
             _transform = transform;
             _ground = LayerMask.GetMask("Game/Ground");
 
-            _testColor = _renderer.color;
-
             if (_playable) return;
             
             _collider.isTrigger = true;
             _rb.gravityScale = 0;
         }
 
+        private void Update() {
+            if(!_attachedAnt) _renderer.flipX = _direction == -1 ? true : false;
+        }
+
         private void FixedUpdate() {
             if (_gameManager.GamePaused() || !_playable || _onBridge) return;
-
-            _groundHit = Physics2D.Raycast(transform.position, Vector2.down, 1f,_ground);
-            _onAir = !_groundHit.collider;
 
             if (_attached) {
                 FollowAttached();
@@ -94,6 +91,12 @@ namespace ANT.Components.Ants
         public float GetSpeed() { return Stats.Speed; }
 
         public float GetAntDirection() { return _direction; }
+
+        public float GetVelocity() { return _rb.velocity.x; }
+
+        public bool IsFollowing() { return _following; }
+
+        public bool IsAttached() { return _attached; }
         
         public void SetAntLayer(LayerMask layer) { gameObject.layer = layer; }
 
@@ -122,7 +125,7 @@ namespace ANT.Components.Ants
         }
 
         public void Dehighlight() {
-            _renderer.color = _testColor;
+            _renderer.color = Color.white;
         }
 
         public void BuildTower(Vector3 firstAntPosition, float offset) {
@@ -149,16 +152,23 @@ namespace ANT.Components.Ants
         }
 
         private void FollowAttached() {
-            if (Vector2.Distance(_transform.position, _attachedAnt._transform.position) <= _FOLLOW_THRESHOLD) return;
-            
+            if (Vector2.Distance(_rb.position, _attachedAnt._rb.position) <= _FOLLOW_THRESHOLD) {
+                _following = false;
+                return;
+            }
+ 
             Vector2 targetPosition = _attachedAnt._transform.position;
             Vector2 currentPosition = _transform.position;
             float maxDistanceDelta = _attachedMovementSpeed * Time.fixedDeltaTime;
 
-            if (!_onTower)
+            if (!_onTower) {
                 _transform.position = Vector2.MoveTowards(currentPosition, targetPosition, maxDistanceDelta);
-            else
+                _following = true;
+            } else
                 _transform.position = new Vector2(_antsManager.GetAnt(0)._transform.position.x, currentPosition.y);
+
+            _renderer.flipX = _attachedAnt._direction == -1 ? true : false;
+            _direction = _attachedAnt._direction;
         }
 
         private IAnt InitializeAntType() {

@@ -60,7 +60,7 @@ namespace ANT.Components.Ants
             if (!_onSelectMode) return;
             
             _gameManager.SetState(GameStates.Paused);
-            _currentAnts[0].Highlight(Color.white);
+            _currentAnts[0].Highlight(new Color(0, 0, 0, 0.8f));
             _auxIndex = 0;
         }
 
@@ -98,14 +98,14 @@ namespace ANT.Components.Ants
                 _currentAnts[_auxIndex].Dehighlight();
                 if (direction >= 0) _auxIndex = _auxIndex == 0 ? _currentAnts.Count - 1 : (_auxIndex - 1) % _currentAnts.Count;
                 else _auxIndex = _auxIndex == _currentAnts.Count - 1 ? 0 : (_auxIndex + 1) % _currentAnts.Count;
-                _currentAnts[_auxIndex].Highlight(Color.white);
+                _currentAnts[_auxIndex].Highlight(new Color(0, 0, 0, 0.8f));
             }
                 
             if (_input.LeftFlag()) {
                 _currentAnts[_auxIndex].Dehighlight();
                if (direction >= 0) _auxIndex = _auxIndex == _currentAnts.Count - 1 ? 0 : (_auxIndex + 1) % _currentAnts.Count;
                else _auxIndex = _auxIndex == 0 ? _currentAnts.Count - 1 : (_auxIndex - 1) % _currentAnts.Count;
-                _currentAnts[_auxIndex].Highlight(Color.white);
+                _currentAnts[_auxIndex].Highlight(new Color(0, 0, 0, 0.8f));
             }
 
             if (_input.AntSelectFlag()) {

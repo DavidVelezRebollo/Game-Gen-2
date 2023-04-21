@@ -508,6 +508,8 @@ GameObject:
   m_Component:
   - component: {fileID: 221409362}
   - component: {fileID: 221409363}
+  - component: {fileID: 221409364}
+  - component: {fileID: 221409365}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -571,8 +573,8 @@ SpriteRenderer:
   m_SortingLayerID: 345450713
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.972549, g: 0.90617234, b: 0.63529414, a: 1}
+  m_Sprite: {fileID: 1840509311, guid: 0fe075d65f4f48546a4f8d012c106a6c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -582,6 +584,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &221409364
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221409361}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3b27731b64595394399d2104ef2f144a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &221409365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221409361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86363047d75f49d44837b08a794aff68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &258497421
 GameObject:
   m_ObjectHideFlags: 3
@@ -732,12 +766,12 @@ GameObject:
   - component: {fileID: 407580658}
   - component: {fileID: 407580657}
   m_Layer: 0
-  m_Name: RedAnt
+  m_Name: MajorAnt
   m_TagString: Game/Ant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &407580657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -962,7 +996,7 @@ GameObject:
   - component: {fileID: 441885567}
   - component: {fileID: 441885566}
   m_Layer: 3
-  m_Name: QueenAnt
+  m_Name: PrinceAnt
   m_TagString: Game/Ant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,7 +1028,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.42182922, y: 0.028598666}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1005,7 +1039,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.9304047, y: 1.2859867}
   m_EdgeRadius: 0
 --- !u!50 &441885567
 Rigidbody2D:
@@ -1291,7 +1325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.560806, y: 3.59251, z: -10}
+  m_LocalPosition: {x: -31.48, y: 5.05, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1494,6 +1528,8 @@ GameObject:
   m_Component:
   - component: {fileID: 612984203}
   - component: {fileID: 612984204}
+  - component: {fileID: 612984205}
+  - component: {fileID: 612984206}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1557,8 +1593,8 @@ SpriteRenderer:
   m_SortingLayerID: 345450713
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7184461, g: 0.9716981, b: 0.637104, a: 1}
+  m_Sprite: {fileID: 1813759624, guid: 67484020c2d7cb6478955ba850c61065, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1568,6 +1604,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &612984205
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612984202}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ab854b43ddfe4748b3cf9b42a1d3c34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &612984206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612984202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86363047d75f49d44837b08a794aff68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &619370579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2808,7 +2876,7 @@ GameObject:
   - component: {fileID: 1033565967}
   - component: {fileID: 1033565966}
   m_Layer: 3
-  m_Name: BigAnt
+  m_Name: QueenAnt
   m_TagString: Game/Ant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2827,7 +2895,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.054382324, y: 0.036254883}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2838,7 +2906,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.2750244, y: 1.8459477}
   m_EdgeRadius: 0
 --- !u!50 &1033565967
 Rigidbody2D:
@@ -2882,7 +2950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033565965}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -38.945, y: -3.4599998, z: 0}
+  m_LocalPosition: {x: -35.7, y: -2.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3035,6 +3103,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1094373654}
   - component: {fileID: 1094373655}
+  - component: {fileID: 1094373657}
+  - component: {fileID: 1094373656}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -3098,7 +3168,7 @@ SpriteRenderer:
   m_SortingLayerID: 345450713
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -284913810, guid: 37c794f94c8be8045854e1177f975250, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3109,6 +3179,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1094373656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094373653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86363047d75f49d44837b08a794aff68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1094373657
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094373653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5037c5f6d2867e64984307eb58570de4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1202896949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,6 +3590,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1355531990}
   - component: {fileID: 1355531989}
+  - component: {fileID: 1355531992}
+  - component: {fileID: 1355531991}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -3536,8 +3640,8 @@ SpriteRenderer:
   m_SortingLayerID: 345450713
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 282880059, guid: 7cd1fed9dbe06bd40aa59191401841fd, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3562,6 +3666,38 @@ Transform:
   m_Father: {fileID: 1850281797}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1355531991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355531988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86363047d75f49d44837b08a794aff68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1355531992
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355531988}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4bb3e9d66da3304581764baff7d6149, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1427008878
 GameObject:
   m_ObjectHideFlags: 0
@@ -4402,7 +4538,7 @@ GameObject:
   - component: {fileID: 1850281796}
   - component: {fileID: 1850281795}
   m_Layer: 3
-  m_Name: SmallAnt
+  m_Name: WorkerAnt
   m_TagString: Game/Ant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4434,7 +4570,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.2501297, y: -0.075656176}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4445,7 +4581,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.6842651, y: 1.18684}
   m_EdgeRadius: 0
 --- !u!50 &1850281796
 Rigidbody2D:
@@ -4476,7 +4612,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1850281793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.7, y: -3.4599998, z: 0}
+  m_LocalPosition: {x: -31.48, y: -2.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4741,7 +4877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060840770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.7, y: 3.6200001, z: -10}
+  m_LocalPosition: {x: -31.48, y: 5.05, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
