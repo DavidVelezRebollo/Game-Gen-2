@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ANT.Components.Core {
@@ -24,10 +25,22 @@ namespace ANT.Components.Core {
         [SerializeField] private bool DebugMode;
 
         private GameStates _state;
+        public static Action OnScoreChange;
+
+        private static int _score;
 
         #region Getters & Setters
 
         public void SetState(GameStates state) { _state = state; }
+
+        public static void AddScore(int score) {
+            _score += score;
+            OnScoreChange?.Invoke();
+        }
+
+        public static int GetScore() {
+            return _score;
+        }
 
         #endregion
 

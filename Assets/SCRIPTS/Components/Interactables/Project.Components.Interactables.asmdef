@@ -3,6 +3,7 @@
     "rootNamespace": "",
     "references": [
         "Unity.TextMeshPro",
+        "Unity.InputSystem",
         "Project.Input",
         "Project.Shared",
         "Project.Interfaces.Interactable",

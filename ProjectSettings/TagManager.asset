@@ -16,7 +16,7 @@ TagManager:
   - Game/Ground
   - Game/CollidableAnt
   - Game/WaterDrop
-  - 
+  - Game/Interactable
   - 
   - 
   - 

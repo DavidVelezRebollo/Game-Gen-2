@@ -118,7 +118,7 @@ namespace ANT.Components.Ants
                 // Attachs the ants
                 _currentAnts[0].Dehighlight();
                 _currentAnts[0].SetAttachedAnt(null);
-                _currentAnts[0].gameObject.tag = "PlayableAnt";
+                _currentAnts[0].gameObject.tag = "Game/PlayableAnt";
 
                 for (int i = 1; i < _currentAnts.Count; i++) {
                     _currentAnts[i].SetAttachedAnt(_currentAnts[i - 1]);

@@ -10,7 +10,7 @@ namespace ANT.Components.Interactables {
 
         private float _rainingDelta;
 
-        private bool _raining = true;
+        private bool _raining;
 
         private void Start() {
             _rainingDelta = RainingRate;

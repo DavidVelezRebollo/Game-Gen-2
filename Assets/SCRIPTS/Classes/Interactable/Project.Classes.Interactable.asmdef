@@ -2,7 +2,9 @@
     "name": "Project.Classes.Interactable",
     "rootNamespace": "",
     "references": [
-        "GUID:8934a3c41752d1241af215d45b3e4911"
+        "GUID:8934a3c41752d1241af215d45b3e4911",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:089d8793af4dc7e4fb7bed4f5bd3b7d2"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
