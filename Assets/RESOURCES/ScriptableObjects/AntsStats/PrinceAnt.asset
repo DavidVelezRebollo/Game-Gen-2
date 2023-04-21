@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4acc7404e38dd943ac7b69e689952ab, type: 3}
-  m_Name: RedAnt
+  m_Name: PrinceAnt
   m_EditorClassIdentifier: 
-  Type: 2
+  Type: 3
+  Sound: PrinceAnt
   HealthPoints: 100
-  Speed: 2
+  Speed: 1.5

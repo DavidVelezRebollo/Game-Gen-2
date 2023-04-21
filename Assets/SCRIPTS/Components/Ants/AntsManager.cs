@@ -29,6 +29,7 @@ namespace ANT.Components.Ants
         private int _auxIndex;
 
         private bool _onSelectMode;
+        private bool _antsProtected;
 
         #region Unity Events
 
@@ -72,6 +73,10 @@ namespace ANT.Components.Ants
 
         public AntComponent GetAnt(int index) { return _currentAnts[index]; }
 
+        public bool IsAntsProtected() { return _antsProtected; }
+
+        public void ProtectAnts() { _antsProtected = true; }
+
         #endregion
 
         #region Methods
@@ -110,8 +115,7 @@ namespace ANT.Components.Ants
 
             if (_input.AntSelectFlag()) {
                 // Ant position change in the list
-                _currentAnts[_auxIndex].gameObject.tag = "Game/Ant";
-                AntsCamera.m_Follow = _currentAnts[_auxIndex].transform;
+                _currentAnts[0].gameObject.tag = "Game/Ant";
                 
                 (_currentAnts[_auxIndex].transform.position, _currentAnts[0].transform.position)
                     = (_currentAnts[0].transform.position, _currentAnts[_auxIndex].transform.position);
@@ -121,6 +125,8 @@ namespace ANT.Components.Ants
                 _currentAnts[0].Dehighlight();
                 _currentAnts[0].SetAttachedAnt(null);
                 _currentAnts[0].gameObject.tag = "Game/PlayableAnt";
+                _currentAnts[0].PlayAntSound();
+                AntsCamera.m_Follow = _currentAnts[0].transform;
 
                 for (int i = 1; i < _currentAnts.Count; i++) {
                     _currentAnts[i].SetAttachedAnt(_currentAnts[i - 1]);

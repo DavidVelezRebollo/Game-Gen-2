@@ -170,7 +170,70 @@ MonoBehaviour:
   GeneralMixerGroup: {fileID: 24300002, guid: eb9d6a5857485dd4eb26d66fcadf07a1, type: 2}
   MusicMixerGroup: {fileID: 877914611543677848, guid: eb9d6a5857485dd4eb26d66fcadf07a1, type: 2}
   SoundEffectsMixerGroup: {fileID: -8369305027225308679, guid: eb9d6a5857485dd4eb26d66fcadf07a1, type: 2}
-  Sounds: []
+  Sounds:
+  - ClipName: WorkerAnt
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: 07bd922cea9c9a240bb29fb9b4162ccf, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: QueenAnt
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: f5834d77d59cb4f4c892c2ace3b59670, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: PrinceAnt
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: bd48abf077abbee4185010c40692f527, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: PrincessAnt
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: 49d52aaf13e7a40429087648db7956be, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: MajorAnt
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: 49d52aaf13e7a40429087648db7956be, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Rain
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: a679d5502e64070468efb95cf1011cbe, type: 3}
+    IsLoop: 1
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Ambient
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: fd5f7298279bafa438a12e0a60fa7674, type: 3}
+    IsLoop: 1
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: AntTower
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: 8541284e5512ee04fa51475465d6138b, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
+  - ClipName: Button
+    AudioType: 1
+    AudioClip: {fileID: 8300000, guid: 570903ec25b4b6a449de8a8d43347894, type: 3}
+    IsLoop: 0
+    PlayOnAwake: 0
+    Volume: 0.5
+    Source: {fileID: 0}
 --- !u!1 &542768040
 GameObject:
   m_ObjectHideFlags: 0

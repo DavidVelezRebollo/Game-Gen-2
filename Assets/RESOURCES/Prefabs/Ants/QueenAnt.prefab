@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6858561120220214853}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -35.7, y: -2.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86a3c1d0599e2549bd28e8f3e7194a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: 9b01d4648719c244387855f623f29c51, type: 2}
+  Stats: {fileID: 11400000, guid: 6289c684a71d236438d9ce1f2bfe4bf1, type: 2}
+  FollowThreshold: 6.5
+  TowerOffset: 2.3
 --- !u!50 &6858561120220214855
 Rigidbody2D:
   serializedVersion: 4
@@ -82,7 +84,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.054382324, y: 0.036254883}
+  m_Offset: {x: -0.12789917, y: -0.0045870543}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -93,7 +95,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.2750244, y: 1.8459477}
+  m_Size: {x: 6.9705963, y: 3.1855671}
   m_EdgeRadius: 0
 --- !u!1 &6858561120338470082
 GameObject:

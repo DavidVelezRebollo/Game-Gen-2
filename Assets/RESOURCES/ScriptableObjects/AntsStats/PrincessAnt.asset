@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4acc7404e38dd943ac7b69e689952ab, type: 3}
-  m_Name: BigAnt
+  m_Name: PrincessAnt
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 4
+  Sound: PrincessAnt
   HealthPoints: 100
   Speed: 1.5

@@ -165,7 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86a3c1d0599e2549bd28e8f3e7194a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats: {fileID: 11400000, guid: ed3ca44b93e35604eac5ae68bf90a759, type: 2}
+  Stats: {fileID: 11400000, guid: a0a97af1f8c94394eb71379d697da922, type: 2}
+  FollowThreshold: 6.5
+  TowerOffset: 2.3
 --- !u!50 &5370854901418292565
 Rigidbody2D:
   serializedVersion: 4
@@ -200,7 +202,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2501297, y: -0.075656176}
+  m_Offset: {x: -0.38964272, y: -0.15106916}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -211,5 +213,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.6842651, y: 1.18684}
+  m_Size: {x: 4.079403, y: 1.8052263}
   m_EdgeRadius: 0

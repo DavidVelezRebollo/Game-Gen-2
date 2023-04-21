@@ -1,4 +1,4 @@
-using System;
+using ANT.Components.Audio;
 using ANT.Shared;
 using ANT.Input;
 using ANT.Interfaces.Ant;
@@ -12,12 +12,15 @@ namespace ANT.Components.Ants
     [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
     public class AntComponent : MonoBehaviour {
         [SerializeField] private AntStats Stats;
+        [SerializeField] private float FollowThreshold = 6.5f;
+        [SerializeField] private float TowerOffset = 2.3f;
 
         private Rigidbody2D _rb;
         private SpriteRenderer _renderer;
         private InputManager _input;
         private GameManager _gameManager;
         private AntsManager _antsManager;
+        private SoundManager _soundManager;
 
         private IAnt _ant;
         private AntComponent _attachedAnt;
@@ -26,7 +29,6 @@ namespace ANT.Components.Ants
         private RaycastHit2D _groundHit;
         private BoxCollider2D _collider;
 
-        private const float _FOLLOW_THRESHOLD = 3.5f;
         private float _attachedMovementSpeed;
         private float _direction; // -1: Left, 1: Right
 
@@ -42,6 +44,7 @@ namespace ANT.Components.Ants
             _input = InputManager.Instance;
             _gameManager = GameManager.Instance;
             _antsManager = AntsManager.Instance;
+            _soundManager = SoundManager.Instance;
 
             _ant = InitializeAntType();
             _rb = GetComponent<Rigidbody2D>();
@@ -94,6 +97,8 @@ namespace ANT.Components.Ants
 
         public float GetVelocity() { return _rb.velocity.x; }
 
+        public float GetTowerOffset() { return TowerOffset; }
+
         public bool IsFollowing() { return _following; }
 
         public bool IsAttached() { return _attached; }
@@ -142,6 +147,8 @@ namespace ANT.Components.Ants
             gameObject.layer = 7;
         }
 
+        public void PlayAntSound() { _soundManager.Play(Stats.Sound); }
+
         #endregion
 
         #region Auxiliar Methods
@@ -152,7 +159,7 @@ namespace ANT.Components.Ants
         }
 
         private void FollowAttached() {
-            if (Vector2.Distance(_rb.position, _attachedAnt._rb.position) <= _FOLLOW_THRESHOLD) {
+            if (Vector2.Distance(_rb.position, _attachedAnt._rb.position) <= FollowThreshold && !_onTower) {
                 _following = false;
                 return;
             }
@@ -164,8 +171,10 @@ namespace ANT.Components.Ants
             if (!_onTower) {
                 _transform.position = Vector2.MoveTowards(currentPosition, targetPosition, maxDistanceDelta);
                 _following = true;
-            } else
-                _transform.position = new Vector2(_antsManager.GetAnt(0)._transform.position.x, currentPosition.y);
+            } else {
+                _transform.position = new Vector2(_antsManager.GetAnt(0)._transform.position.x, targetPosition.y + TowerOffset);
+                _transform.rotation = Quaternion.identity;
+            }
 
             _renderer.flipX = _attachedAnt._direction == -1 ? true : false;
             _direction = _attachedAnt._direction;
@@ -175,14 +184,20 @@ namespace ANT.Components.Ants
             IAnt ant = null;
 
             switch (Stats.Type) {
-                case AntTypes.SmallAnt:
-                    ant = new SmallAnt();
+                case AntTypes.WorkerAnt:
+                    ant = new RedAnt();
                     break;
-                case AntTypes.BigAnt:
+                case AntTypes.QueenAnt:
                     ant = new BigAnt();
                     break;
-                case AntTypes.RedAnt:
+                case AntTypes.MajorAnt:
                     ant = new RedAnt();
+                    break;
+                case AntTypes.PrinceAnt:
+                    ant = new BigAnt();
+                    break;
+                case AntTypes.PrincessAnt:
+                    ant = new SmallAnt();
                     break;
                 default:
                     Debug.LogError("Type " + Stats.Type + " not implemented yet");

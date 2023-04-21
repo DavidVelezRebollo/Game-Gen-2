@@ -12,7 +12,8 @@ namespace ANT.Components.Interactables {
         }
 
         private void OnTriggerEnter2D(Collider2D collision) {
-            if (collision.CompareTag("Game/Ant") || collision.CompareTag("Game/PlayableAnt")) {
+            if ((collision.CompareTag("Game/Ant") || collision.CompareTag("Game/PlayableAnt"))
+                && !AntsManager.Instance.IsAntsProtected()) {
                 collision.GetComponent<AntComponent>().Die();
             }
 

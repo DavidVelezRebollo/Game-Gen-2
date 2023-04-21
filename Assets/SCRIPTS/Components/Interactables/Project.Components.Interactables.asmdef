@@ -9,7 +9,8 @@
         "Project.Interfaces.Interactable",
         "Project.Classes.Interactable",
         "Project.Components.Ants",
-        "Project.Components.UI"
+        "Project.Components.UI",
+        "Project.Components.Sound"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,10 +1,9 @@
 namespace ANT.Shared {
     public enum AntTypes {
-        SmallAnt,
-        BigAnt,
-        RedAnt,
+        WorkerAnt,
+        QueenAnt,
+        MajorAnt,
         PrinceAnt,
         PrincessAnt,
-        AphidAnt
     }
 }
