@@ -10,6 +10,7 @@ namespace ANT.Components.Tutorial {
         [SerializeField] private string ContentText;
         [SerializeField] private GameObject UiGameObject;
         [SerializeField] private InteractableUI Ui;
+        [SerializeField] private float Height;
 
         private void Start() {
             UiGameObject.SetActive(false);
@@ -29,7 +30,7 @@ namespace ANT.Components.Tutorial {
 
         private void ShowTutorial() {
             UiGameObject.transform.SetParent(transform);
-            UiGameObject.transform.localPosition = new Vector3(0, 2f);
+            UiGameObject.transform.localPosition = new Vector3(0, Height);
             Ui.SetText(HeaderText, ContentText);
             UiGameObject.SetActive(true);
         }

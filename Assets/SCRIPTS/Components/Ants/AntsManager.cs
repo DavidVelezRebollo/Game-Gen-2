@@ -15,6 +15,8 @@ namespace ANT.Components.Ants
         private void Awake() {
             if (Instance != null) return;
             Instance = this;
+
+            DontDestroyOnLoad(this);
         }
 
         #endregion

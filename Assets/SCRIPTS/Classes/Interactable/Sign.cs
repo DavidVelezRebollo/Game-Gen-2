@@ -1,4 +1,5 @@
 using ANT.Interfaces.Interactable;
+using ANT.Components.Audio;
 
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -23,6 +24,8 @@ namespace ANT.Classes.Interactables {
             _ui.transform.SetParent(_parent);
             _ui.transform.localPosition = new Vector3(0, _height, 0);
             _ui.SetActive(true);
+
+            SoundManager.Instance.Play("Sign");
         }
 
         public void Interact() { }

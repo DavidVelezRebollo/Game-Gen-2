@@ -2,6 +2,7 @@ using ANT.Shared;
 using ANT.Interfaces.Interactable;
 using ANT.Classes.Interactables;
 using ANT.Components.HUD;
+using ANT.Components.Audio;
 using ANT.Input;
 
 using UnityEngine;

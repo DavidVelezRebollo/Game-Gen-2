@@ -34,7 +34,6 @@ namespace ANT.Components.Interactables {
             Vector3 lastAntPosition = new Vector3(lastAntXPosition, lastAntYPosition);
 
             _transform.position = lastAntPosition + new Vector3(0, 1.5f);
-            Debug.Log("Nose");
         }
     }
 }
