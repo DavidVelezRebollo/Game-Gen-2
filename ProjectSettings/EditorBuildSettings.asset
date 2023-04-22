@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/SCENES/RainLevel.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/SCENES/Shared.unity
+    guid: 75e5266cbfb95d34e9ec8a55ed294a13
+  - enabled: 1
+    path: Assets/SCENES/MainMenu.unity
+    guid: f3d2b46be32dc704c8cd8dcd40a99b8e
+  - enabled: 1
+    path: Assets/SCENES/Level1.unity
+    guid: 7011fb6aff8ab5a4aa0017468da687c0
   m_configObjects: {}

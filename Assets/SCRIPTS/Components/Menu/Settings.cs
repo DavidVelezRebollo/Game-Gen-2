@@ -102,6 +102,10 @@ namespace ANT.Components.Menu {
             else FullScreenToggle.SetIsOnWithoutNotify(true);
         }
 
+        public void OnExit() {
+            Application.Quit();
+        }
+
         #endregion
 
         #region Getters & Setters

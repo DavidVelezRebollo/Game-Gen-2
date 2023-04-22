@@ -39,14 +39,14 @@ namespace ANT.Components.Ants {
             if (!col.CompareTag("Game/PlayableAnt") || !Interactable) return;
             Ui.ShowText(AntsManager.CurrentAntsCount(), RequiredAnts);
             _isColliding = true;
-            InteractableRenderer.sprite = HighlightSprite;
+            if(InteractableRenderer) InteractableRenderer.sprite = HighlightSprite;
         }
 
         private void OnTriggerExit2D(Collider2D other) {
             if (!other.CompareTag("Game/PlayableAnt") || !Interactable) return;
             Ui.HideText();
             _isColliding = false;
-            InteractableRenderer.sprite = DefaultSprite;
+            if(InteractableRenderer) InteractableRenderer.sprite = DefaultSprite;
         }
 
         #endregion

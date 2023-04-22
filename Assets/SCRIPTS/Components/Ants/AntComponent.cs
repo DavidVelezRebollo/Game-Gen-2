@@ -135,12 +135,14 @@ namespace ANT.Components.Ants
 
         public void BuildTower(Vector3 firstAntPosition, float offset) {
             _transform.position = firstAntPosition + new Vector3(0, offset);
+            _transform.rotation = Quaternion.identity;
             _rb.gravityScale = 0;
             _onTower = true;
         }
 
         public void BuildBridge(Vector3 firstAntPosition, float offset) {
             _transform.position = firstAntPosition + new Vector3(offset, 0);
+            _transform.rotation = Quaternion.identity;
             _rb.gravityScale = 0;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
             _onBridge = true;

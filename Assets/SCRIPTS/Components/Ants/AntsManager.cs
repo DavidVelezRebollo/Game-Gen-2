@@ -95,6 +95,13 @@ namespace ANT.Components.Ants
             _currentAnts.Add(ant);
         }
 
+        public void RemoveAnt(AntComponent ant) {
+            ant.SetAttachedAnt(null);
+            ant.SetAttachedSpeed(0);
+
+            _currentAnts.Remove(ant);
+        }
+
         #endregion
 
         #region Auxiliar Methods

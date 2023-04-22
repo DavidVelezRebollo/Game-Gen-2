@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ANT.Components.Core {
     public enum GameStates {
@@ -18,6 +19,8 @@ namespace ANT.Components.Core {
             Instance = this;
 
             _state = DebugMode ? GameStates.Playing : GameStates.Menu;
+
+            if (!DebugMode) SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         }
 
         #endregion
@@ -28,6 +31,7 @@ namespace ANT.Components.Core {
         public static Action OnScoreChange;
 
         private static int _score;
+        private bool _gameEnd;
 
         #region Getters & Setters
 
@@ -42,6 +46,8 @@ namespace ANT.Components.Core {
             return _score;
         }
 
+        public bool GameEnd() { return _gameEnd; }
+
         #endregion
 
         #region Methods
@@ -50,6 +56,11 @@ namespace ANT.Components.Core {
 
         public void EndGame() {
             // TODO - End the game
+            _gameEnd = true;
+            _state = GameStates.Paused;
+        }
+
+        public void WinGame() {
             _state = GameStates.Paused;
         }
 

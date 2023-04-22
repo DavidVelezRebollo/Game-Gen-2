@@ -1,3 +1,6 @@
+using ANT.Components.Core;
+using ANT.Components.Audio;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +22,10 @@ namespace ANT.Components.Menu {
             _sequence.Pause();
 
             _sequence.OnComplete(() => {
-                Debug.Log("TO DO - Start Game");
+                SceneManager.UnloadSceneAsync(1);
+                SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
+                GameManager.Instance.SetState(GameStates.Playing);
+                SoundManager.Instance.Play("Ambient");
             });
 
             _sequence.Join(MenuImage.DOFade(0f, FadeTime));
